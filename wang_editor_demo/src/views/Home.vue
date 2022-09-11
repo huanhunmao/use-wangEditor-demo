@@ -19,7 +19,7 @@
 <script>
 import Vue from 'vue'
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
-import { IEditorConfig, DomEditor } from '@wangeditor/editor'
+import { DomEditor, IEditorConfig } from '@wangeditor/editor'
 
 export default Vue.extend({
   components: { Editor, Toolbar },
@@ -33,11 +33,12 @@ export default Vue.extend({
     }
   },
   updated() {
-    console.log('IEditorConfig', IEditorConfig)
+    const config = this.editor.getConfig()
+    config.placeholder = '我是马克付'
+
     const toolbar = DomEditor.getToolbar(this.editor)
 
     const curToolbarConfig = toolbar.getConfig()
-    console.log(curToolbarConfig.toolbarKeys)
 
     curToolbarConfig.insertKeys = {
       index: 5, // 插入的位置，基于当前的 toolbarKeys
